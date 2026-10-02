@@ -1,3 +1,5 @@
+import PageHeader from '../components/layout/PageHeader.jsx'
+
 export default function Products() {
-  return <h1 className="text-3xl font-semibold">Products</h1>
+  return <PageHeader title="Products" />
 }

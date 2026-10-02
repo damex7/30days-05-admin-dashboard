@@ -1,3 +1,5 @@
+import PageHeader from '../components/layout/PageHeader.jsx'
+
 export default function Orders() {
-  return <h1 className="text-3xl font-semibold">Orders</h1>
+  return <PageHeader title="Orders" />
 }
