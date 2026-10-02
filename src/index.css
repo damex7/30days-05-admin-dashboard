@@ -54,6 +54,26 @@
 
   --animate-shimmer: shimmer 1.4s ease-in-out infinite;
   --animate-fade-in: fade-in 160ms ease-out;
+  --animate-drawer-right: drawer-right 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-drawer-left: drawer-left 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-pop-in: pop-in 160ms ease-out;
+
+  @keyframes drawer-right {
+    from {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes drawer-left {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+  }
 
   @keyframes shimmer {
     0%,
@@ -148,6 +168,11 @@
   ::selection {
     background: var(--color-accent-soft);
     color: var(--color-ink);
+  }
+
+  /* Freeze the page behind an open Drawer or Modal */
+  html:has(dialog[open]) {
+    overflow: hidden;
   }
 
   dialog::backdrop {
