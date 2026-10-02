@@ -30,7 +30,7 @@ async function request(work) {
   await new Promise((resolve) => setTimeout(resolve, 300 + Math.random() * 400))
   const failRate = Number(new URLSearchParams(window.location.search).get('fail'))
   if (failRate > 0 && Math.random() < failRate) {
-    throw new ApiError('The server did not respond. This failure was simulated with ?fail in the URL.', 503)
+    throw new ApiError('The server did not respond. (This failure is simulated: remove “fail” from the address bar to stop it.)', 503)
   }
   // structuredClone: callers get a copy, so they can never mutate the "database"
   return structuredClone(work())

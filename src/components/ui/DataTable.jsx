@@ -106,7 +106,7 @@ export default function DataTable({
     body = (
       <tr>
         <td colSpan={columns.length}>
-          <ErrorState compact error={error} onRetry={onRetry} />
+          <ErrorState compact title={caption ? `Couldn't load ${caption.toLowerCase()}` : undefined} error={error} onRetry={onRetry} />
         </td>
       </tr>
     )
