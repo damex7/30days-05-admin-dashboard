@@ -28,7 +28,7 @@ export default function AppShell() {
     <div className="min-h-dvh lg:grid lg:grid-cols-[16rem_minmax(0,1fr)]">
       <a
         href="#main"
-        className="sr-only z-50 rounded-lg bg-primary px-4 py-2 text-on-primary focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        className="fixed top-3 left-3 z-50 -translate-y-20 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-on-primary shadow-pop transition-transform focus:translate-y-0"
       >
         Skip to content
       </a>
