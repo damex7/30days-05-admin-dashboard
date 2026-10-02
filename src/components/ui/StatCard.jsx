@@ -38,7 +38,7 @@ export default function StatCard({
   return (
     <div className={cx('flex min-w-0 flex-col rounded-xl border border-line bg-panel p-5 shadow-card', className)}>
       <p className="text-sm font-medium text-ink-soft">{label}</p>
-      <p className="mt-1 truncate font-display text-[1.75rem] leading-tight font-semibold tabular text-ink">
+      <p className="mt-1 truncate font-display text-[1.75rem] leading-tight font-semibold text-ink">
         {format(value)}
       </p>
       <p className="mt-2 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs text-ink-soft">

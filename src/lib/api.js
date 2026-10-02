@@ -175,6 +175,7 @@ export function getOverview({ range } = {}) {
     const beforeList = [...before.values()]
     const revenueSeries = buckets.map((key, i) => ({
       key,
+      previousKey: prevBuckets[i],
       revenue: now.get(key).revenue,
       previous: beforeList[i]?.revenue ?? 0,
     }))

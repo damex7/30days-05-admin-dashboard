@@ -1,5 +1,5 @@
 import { useId } from 'react'
-import { cx } from '../../lib/cx.js'
+import { cx, safeId } from '../../lib/cx.js'
 
 /*
   A sparkline drawn by hand in SVG: map each value to an x/y point in a
@@ -14,7 +14,7 @@ const HEIGHT = 32
 const PAD = 2
 
 export default function Sparkline({ data = [], color = 'var(--color-chart-1)', className }) {
-  const gradientId = useId()
+  const gradientId = safeId(useId())
   if (data.length < 2) return null
 
   const min = Math.min(...data)
