@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/*
+  Design tokens. Each one becomes a CSS variable (--color-panel) AND a
+  Tailwind utility (bg-panel, text-ink-soft, border-line, font-display...).
+  The look: a market ledger. Warm paper, forest-green ink, ochre accents
+  and thin ruled lines. Dark mode is the same ledger at night.
+*/
+@theme {
+  --color-paper: #f6f3ec; /* page background */
+  --color-panel: #ffffff; /* cards, tables, drawers */
+  --color-panel-2: #f1ece2; /* recessed: inputs, table header, hover */
+  --color-ink: #13241d; /* main text */
+  --color-ink-soft: #4b5a53; /* secondary text (7:1 on panel) */
+  --color-ink-faint: #67736d; /* captions, axis labels (4.8:1) */
+  --color-line: #e4ded1; /* hairlines */
+  --color-line-strong: #8a938d; /* input borders (3:1) */
+
+  --color-primary: #0f4d3a; /* forest green: primary buttons, active nav */
+  --color-primary-hover: #0b3d2e;
+  --color-on-primary: #ffffff;
+  --color-primary-soft: #e3efe8;
+  --color-accent: #b97a0b; /* ochre: focus ring, highlights (3.3:1) */
+  --color-accent-soft: #f8ecd3;
+
+  --color-sidebar: #0f3d2e;
+  --color-sidebar-ink: #e4efe8;
+  --color-sidebar-soft: #9fbcae;
+  --color-sidebar-active: #1a5a44;
+
+  /* Status: reserved meanings, always shown with a text label */
+  --color-success: #17683f;
+  --color-success-soft: #e0f0e6;
+  --color-warning: #8a5700;
+  --color-warning-soft: #fbefd6;
+  --color-danger: #a8301f;
+  --color-danger-soft: #fbe5e0;
+  --color-info: #2a5799;
+  --color-info-soft: #e3ecf8;
+
+  /* Charts: validated for colour-blind separation and 3:1 on the panel */
+  --color-chart-1: #1f7a55;
+  --color-chart-2: #b97a0b;
+  --color-chart-3: #3466b5;
+  --color-chart-muted: #9aa39e; /* comparison series (previous period) */
+  --color-chart-grid: #ece7dc;
+
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Instrument Sans", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+
+  --shadow-card: 0 1px 0 rgb(19 36 29 / 0.04), 0 1px 3px rgb(19 36 29 / 0.06);
+  --shadow-pop: 0 12px 40px rgb(19 36 29 / 0.18);
+
+  --animate-shimmer: shimmer 1.4s ease-in-out infinite;
+  --animate-fade-in: fade-in 160ms ease-out;
+
+  @keyframes shimmer {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/*
+  Dark mode: same variable names, new values. The inline script in
+  index.html (and useTheme) sets data-theme on <html>.
+*/
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #0c1512;
+  --color-panel: #15201c;
+  --color-panel-2: #1c2a25;
+  --color-ink: #e8efe9;
+  --color-ink-soft: #b0beb6;
+  --color-ink-faint: #8c9b93;
+  --color-line: #263630;
+  --color-line-strong: #56695f;
+
+  --color-primary: #5fcf9b;
+  --color-primary-hover: #7cdcae;
+  --color-on-primary: #06140e;
+  --color-primary-soft: #183a2c;
+  --color-accent: #e0a43a;
+  --color-accent-soft: #3a2c12;
+
+  --color-sidebar: #0f1c17;
+  --color-sidebar-ink: #e4efe8;
+  --color-sidebar-soft: #93a99d;
+  --color-sidebar-active: #1d3a2e;
+
+  --color-success: #6fd3a2;
+  --color-success-soft: #173528;
+  --color-warning: #f0bd62;
+  --color-warning-soft: #3a2c12;
+  --color-danger: #f3907f;
+  --color-danger-soft: #401e19;
+  --color-info: #93b7f2;
+  --color-info-soft: #1a2a45;
+
+  --color-chart-1: #2f9a6c;
+  --color-chart-2: #bf8418;
+  --color-chart-3: #5b8ee0;
+  --color-chart-muted: #64746c;
+  --color-chart-grid: #22312b;
+
+  --shadow-card: 0 1px 0 rgb(0 0 0 / 0.3);
+  --shadow-pop: 0 16px 48px rgb(0 0 0 / 0.5);
+}
+
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    letter-spacing: -0.01em;
+  }
+
+  /* One visible focus style for every interactive element */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-accent-soft);
+    color: var(--color-ink);
+  }
+
+  dialog::backdrop {
+    background: rgb(8 18 14 / 0.5);
+    backdrop-filter: blur(2px);
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
